@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hector Berlioz - Lebenslauf</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #f0f2f5, #e0f7fa);
+            color: #2c3e50;
+        }
+        header {
+            background-color: #00796b;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        main {
+            max-width: 800px;
+            margin: 30px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #00796b;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        ul li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        ul li::before {
+            content: "\2022";
+            position: absolute;
+            left: 0;
+            color: #00796b;
+            font-weight: bold;
+        }
+        .merksatz {
+            margin-top: 30px;
+            font-weight: bold;
+            font-style: italic;
+            background-color: #e0f7fa;
+            padding: 15px;
+            border-left: 5px solid #00796b;
+            border-radius: 5px;
+        }
+        .download-btn {
+            display: block;
+            margin: 30px auto 0 auto;
+            padding: 12px 24px;
+            background-color: #00796b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .download-btn:hover {
+            background-color: #004d40;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Hector Berlioz - Lebenslauf</h1>
+    </header>
+    <main id="content">
+        <h2>Allgemeine Informationen</h2>
+        <ul>
+            <li><strong>Geboren</strong>: 11. Dezember 1803 in La Côte-Saint-André, Frankreich</li>
+            <li><strong>Gestorben</strong>: 8. März 1869 in Paris</li>
+            <li><strong>Beruf</strong>: Komponist</li>
+            <li><strong>Epoche</strong>: Romantik</li>
+        </ul>
+
+        <h2>Kindheit und Ausbildung</h2>
+        <ul>
+            <li>Sohn eines Arztes, wuchs in einer wohlhabenden Familie auf.</li>
+            <li>Erhielt früh Musikunterricht, spielte Gitarre und Flöte (kein Klavier!).</li>
+            <li>1821: Beginn eines Medizinstudiums in Paris – brach es ab, um Musik zu studieren.</li>
+            <li>1826: Eintritt ins Pariser Konservatorium.</li>
+        </ul>
+
+        <h2>Musikalische Laufbahn</h2>
+        <ul>
+            <li>1830: Gewinn des "Prix de Rome" (wichtiger Kompositionspreis)</li>
+            <li>1830: Komposition der "Symphonie fantastique", sein bekanntestes Werk.</li>
+            <li>Veröffentlichte ein Orchestrationslehrbuch, welches viele Komponisten beeinflusste</li>
+            <li>Leitete große Orchester in Frankreich, Deutschland, England und Russland.</li>
+        </ul>
+
+        <h2>Wichtige Werke</h2>
+        <ul>
+            <li><strong>Symphonie fantastique</strong> (1830)</li>
+            <li><strong>Harold en Italie</strong> (1834)</li>
+            <li><strong>Requiem</strong> (1837)</li>
+            <li><strong>Les Troyens</strong> (Oper, 1856–1858)</li>
+        </ul>
+
+        <h2>Bedeutung</h2>
+        <ul>
+            <li>Vertreter der frühen Romantik: Betonung von Gefühlen, Individualität und Fantasie.</li>
+            <li>Einfluss auf Komponisten wie Liszt und Wagner.</li>
+        </ul>
+
+        <h2>Tod</h2>
+        <ul>
+            <li>Letzte Jahre von Krankheit gezeichnet.</li>
+            <li>Starb am 8. März 1869 in Paris im Alter von 65 Jahren.</li>
+        </ul>
+
+        <div class="merksatz">
+            Merksatz: Berlioz war der Erzähler der Romantik – mit Tönen statt Worten.
+        </div>
+
+        <button class="download-btn" onclick="downloadPDF()">Download als PDF</button>
+    </main>
+
+    <script>
+        async function downloadPDF() {
+            const {{ jsPDF }} = window.jspdf;
+            const doc = new jsPDF();
+
+            const contentElement = document.getElementById("content");
+            const contentText = contentElement.innerText;
+
+            const lines = doc.splitTextToSize(contentText, 180);
+            doc.text(lines, 10, 10);
+
+            doc.save("hector_berlioz_lebenslauf.pdf");
+        }
+    </script>
+</body>
+</html>
+
